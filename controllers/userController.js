@@ -39,7 +39,7 @@ const isAuth = (req, res, next) => {
 
 // check user roles: "admin"
 const userRoles = (req, res, next) => {
-  console.log(req.body);
+  if (!req.body.roles) return res.send({ message: 'Should have user roles' });
   if (!req.body.roles.includes('admin')) return res.send({ message: 'Your request not permitted' });
   next();
 };
