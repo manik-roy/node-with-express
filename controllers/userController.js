@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken');
+
 const users = [
   {
     id: 1,
@@ -54,10 +56,26 @@ const createUSer = (req, res) => res.send({ message: 'Successfully create a new 
 // DELETE a user
 const deleteUSer = (req, res) => res.send({ message: 'Successfully Delete' });
 
+// login user
+const login = (req, res) => {
+  const SECRET = 'MANIK';
+  const payload = {
+    _id: '2sdfsf3135464564dfgsfsdfs',
+    email: 'test@gmail.com',
+    firstName: 'Brad',
+    lastName: 'Traversy',
+  };
+  const token = jwt.sign(payload, SECRET, { expiresIn: '24h' });
+  return res.status(200).json({ token: `${token}`, status: 'success', message: 'Successfully Login' });
+};
+
 module.exports = {
   getAllUSer,
   isAuth,
   userRoles,
   createUSer,
   deleteUSer,
+  login,
 };
+// token generate kore return
+// what is mongodb, when use sql and when nosql, how mongo Work, mongo vs sql
